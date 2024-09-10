@@ -52,6 +52,7 @@ namespace DemoRazorP.Pages.Clientes
             }
             catch (Exception ex)
             {
+                //Mensaje por Errores
                 Console.WriteLine("Error: " + ex.Message);
                 throw;
             }
