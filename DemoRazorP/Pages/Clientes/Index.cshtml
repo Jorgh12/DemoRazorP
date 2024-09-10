@@ -1,0 +1,40 @@
+﻿@page
+@model DemoRazorP.Pages.Clientes.IndexModel
+@{
+    ViewData["Title"] = "Listado de Clientes";
+}
+<br />
+<h2>Listado de Clientes</h2>
+<a class="btn btn-primary btn-sm" href="Clientes/Agregar">Nuevo Cliente</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Telefono</th>
+            <th>Fecha Compra</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <!-- Recorremos la lista de objeto creada en el Modelo-->
+        @foreach(var item in Model.listaClinetes){
+            <tr>
+                <td>@item.codCliente</td>
+                <td>@item.nomcliente</td>
+                <td>@item.Direccion</td>
+                <td>@item.Telefono</td>
+                <td>@item.fechaCom</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="Cliente/Modificar">Modificar</a>
+                    <a class="btn btn-danger btn-sm" href="Cliente/Eliminar">Eliminar</a>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
