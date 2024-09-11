@@ -42,7 +42,7 @@ namespace DemoRazorP.Pages.Clientes
                     newCliente.nomcliente = lector.GetString(1);
                     newCliente.Direccion = lector.GetString(2);
                     newCliente.Telefono = lector.GetString(3);
-                    newCliente.fechaCom = lector.GetDateTime(4).ToString();
+                    newCliente.fechaCom = lector.GetDateTime(4).ToString("dd/MM/yyyy");
 
                     //Agregar Objeto a la lista 
                     listaClinetes.Add(newCliente);
