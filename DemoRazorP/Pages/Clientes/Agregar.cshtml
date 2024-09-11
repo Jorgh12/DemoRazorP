@@ -1,34 +1,44 @@
 ﻿@page
 @model DemoRazorP.Pages.Clientes.AgregarModel
 @{
+    ViewData["Title"] = "Agregar Cliente";
 }
 
 <br />
 <h2>Agregar Cliente</h2>
 
+<!--Para el Manejo de Errores-->
+@if (Model.mensajeError.Length > 0)
+{
+    <div class='alert alert-warning alert-dismissible fade show' role="alert">
+        <strong>@Model.mensajeError</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 <form method="post">
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Nombre:</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="nombre" value="" />
+            <input type="text" class="form-control" name="nombre" value="@Model.newCliente.nomcliente" />
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Direccion:</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="direccion" value="" />
+            <input type="text" class="form-control" name="direccion" value="@Model.newCliente.Direccion" />
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Telefono:</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="telefono" value="" />
+            <input type="text" class="form-control" name="telefono" value="@Model.newCliente.Telefono" />
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Fecha de la Compra:</label>
         <div class="col-sm-6">
-            <input type="date" class="form-control" name="fechacompra" value="" />
+            <input type="date" class="form-control" name="fechacompra" value="@Model.newCliente.fechaCom" />
         </div>
     </div>
     <div class="row mb-3">
@@ -39,5 +49,21 @@
             <a class="btn btn-outline-primary" asp-page="/Clientes/Index" role="button">Cancelar</a>
         </div>
         </div>
+
+        <!--Para Mostrar Mensaje de Exito en la Insercion-->
+    @if (Model.mensajeExito.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                    <strong>@Model.mensajeExito</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss='alert' aria-label='Close'></button>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
 
 </form>
