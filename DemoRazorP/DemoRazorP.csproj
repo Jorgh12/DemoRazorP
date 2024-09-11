@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <Compile Remove="Pages\Productos\**" />
+    <Content Remove="Pages\Productos\**" />
+    <EmbeddedResource Remove="Pages\Productos\**" />
+    <None Remove="Pages\Productos\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Productos\" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
 </Project>
