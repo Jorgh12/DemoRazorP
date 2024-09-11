@@ -33,7 +33,7 @@ namespace DemoRazorP.Pages.Clientes
             try
             {
                 //Definimos una variable y le asignamos la cadena de conexion definia en el archivo appsettings.json
-                string cadena = configuracion.GetConnectionString("CadenaConexon");
+                string cadena = configuracion.GetConnectionString("CadenaConexion");
 
                 //Creamos el objeto de la Clase SqlConnection
                 SqlConnection conexion = new SqlConnection(cadena);
@@ -42,7 +42,7 @@ namespace DemoRazorP.Pages.Clientes
                 conexion.Open();
 
                 //Creamos un objeto de la clase SqlCommand con el dato cargado en el control TexBox
-                SqlCommand comando = new SqlCommand("Select * From Clientes where CodCliente = @codCliente", conexion);
+                SqlCommand comando = new SqlCommand("Select * From Clientes where codCliente = @codCliente", conexion);
 
                 //Pasar los datos del codigo del cliente al parametro 
                 comando.Parameters.AddWithValue("@codCliente", codCliente);
