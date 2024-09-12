@@ -29,10 +29,10 @@ namespace DemoRazorP.Pages.Clientes
         {
             //Obtenemos el codigo del cliente desde la pagina
             string codCliente = Request.Query["id"];
-            //if (string.IsNullOrEmpty(codCliente))
-            //{
-            //    return;
-            //}
+            if (string.IsNullOrEmpty(codCliente))
+            {
+                return;
+            }
 
             try
             {
