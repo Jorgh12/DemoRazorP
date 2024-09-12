@@ -1,0 +1,54 @@
+﻿@page
+@using System.Data.SqlClient
+@model DemoRazorP.Pages.Clientes.EliminarModel
+@{
+
+    try
+    {
+        //Obtenemos el codigo del cliente desde la Url
+        string codCliente = Request.Query["id"];
+        if (!string.IsNullOrEmpty(codCliente))
+        {
+            Console.WriteLine($"El codigo del cliente es: {codCliente}");
+        }
+
+        //Definimos una variable y le asignamos la cadena de conexion
+        string cadena = "Data Source =PCHENRIQUEZ\\SQLEXPRESS; Initial Catalog=Base1; Integrated Security=true";
+
+        //Creamos un objeto de la clase SQLConnection indicando como parametro la cadena de conexion 
+        SqlConnection conexion = new SqlConnection(cadena);
+
+        //Abrimos la conexion
+        conexion.Open();
+
+        //Creamos un objeto de la clase SqlCommand con el dato cargado en el control TexBox
+        SqlCommand comando = new SqlCommand("Delete From clintes Where codCliente = @codCliente", conexion);
+
+        //Pasar Datos del codigo de Cliente al parametro
+        comando.Parameters.AddWithValue("@codCliente", codCliente);
+
+        comando.ExecuteNonQuery();
+
+                                <form>
+                                    <div class='alert alert-success alert-dismissible fade show' role="alert">
+                                        <strong>Se Borró El cliente Seleccionado Correctamente</strong>
+                                    </div>
+        </form>
+
+        //Cerramos la conexion
+        conexion.Close();
+    }
+    catch (Exception ex)
+    {
+        throw;
+    }
+}
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.alert-success').show();
+            setTimeout(function () { $('.alert').alert('close'); }, 3000);
+        });
+        </script>
+}

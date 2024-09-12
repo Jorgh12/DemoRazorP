@@ -29,6 +29,10 @@ namespace DemoRazorP.Pages.Clientes
         {
             //Obtenemos el codigo del cliente desde la pagina
             string codCliente = Request.Query["id"];
+            //if (string.IsNullOrEmpty(codCliente))
+            //{
+            //    return;
+            //}
 
             try
             {
@@ -42,7 +46,7 @@ namespace DemoRazorP.Pages.Clientes
                 conexion.Open();
 
                 //Creamos un objeto de la clase SqlCommand con el dato cargado en el control TexBox
-                SqlCommand comando = new SqlCommand("Select * From Clientes where codCliente = @codCliente", conexion);
+                SqlCommand comando = new SqlCommand("Select * From Clientes Where codCliente = @codCliente", conexion);
 
                 //Pasar los datos del codigo del cliente al parametro 
                 comando.Parameters.AddWithValue("@codCliente", codCliente);
