@@ -101,14 +101,14 @@ namespace DemoRazorP.Pages.Clientes
                 //Abrimos la conexion
                 conexion.Open();
                 //Creamos el Query
-                String query = "Update Clientes Set nombre = @nombre, direccion = @direccion, telefono = @telefono, FechaPrimeraCompra = @fechacompra Where" + "CodClente = @codCliente";
+                String query = "Update Clientes Set Nomcliente = @nombre, Direccion = @direccion, Telefono = @telefono, FechaPrimeraCompra = @fechacompra Where " + " codCliente = @codCliente";
 
                 //Creamos un objeto de la Clase SqlCommand
                 SqlCommand comando = new SqlCommand(query, conexion);
 
                 //Pasar datos de los controles a los parametros
                 comando.Parameters.AddWithValue("@nombre", newCliente.nomcliente);
-                comando.Parameters.AddWithValue("@direcion", newCliente.Direccion);
+                comando.Parameters.AddWithValue("@direccion", newCliente.Direccion);
                 comando.Parameters.AddWithValue("@telefono", newCliente.Telefono);
                 comando.Parameters.AddWithValue("@fechacompra", DateTime.Parse(newCliente.fechaCom));
                 comando.Parameters.AddWithValue("@codCliente", newCliente.codCliente);
@@ -125,7 +125,7 @@ namespace DemoRazorP.Pages.Clientes
                 throw;
             }
             //Redirigir a la pagina Index
-            Response.Redirect("/Clientes/Index");
+            Response.Redirect("/Clientes/Index/");
 
         }
     }

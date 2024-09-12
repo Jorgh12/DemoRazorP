@@ -83,7 +83,7 @@ namespace DemoRazorP.Pages.Clientes
             mensajeExito = "Cliente Agregado Correctamente.";
 
             //Al finalizar pasar a la pagina Principal de Clientes
-            Response.Redirect("/Index");
+            Response.Redirect("/Clientes");
         }
     }
 }

@@ -13,7 +13,9 @@
         }
 
         //Definimos una variable y le asignamos la cadena de conexion
-        string cadena = "Data Source =PCHENRIQUEZ\\SQLEXPRESS; Initial Catalog=Base1; Integrated Security=true";
+        // Trabajo-- DESKTOP-JHENRIQ
+        // Casa----- DESKTOP-JHENRIQ
+        string cadena = "Data Source =DESKTOP-JHENRIQ; Initial Catalog=Base1; Integrated Security=true";
 
         //Creamos un objeto de la clase SQLConnection indicando como parametro la cadena de conexion 
         SqlConnection conexion = new SqlConnection(cadena);
@@ -22,17 +24,17 @@
         conexion.Open();
 
         //Creamos un objeto de la clase SqlCommand con el dato cargado en el control TexBox
-        SqlCommand comando = new SqlCommand("Delete From clintes Where codCliente = @codCliente", conexion);
+        SqlCommand comando = new SqlCommand("Delete From clientes Where codCliente = @codCliente", conexion);
 
         //Pasar Datos del codigo de Cliente al parametro
         comando.Parameters.AddWithValue("@codCliente", codCliente);
 
         comando.ExecuteNonQuery();
 
-                                <form>
-                                    <div class='alert alert-success alert-dismissible fade show' role="alert">
-                                        <strong>Se Borró El cliente Seleccionado Correctamente</strong>
-                                    </div>
+        <form>
+            <div class='alert alert-success alert-dismissible fade show' role="alert">
+              <strong>Se Borró El cliente Seleccionado Correctamente</strong>
+            </div>
         </form>
 
         //Cerramos la conexion
@@ -42,6 +44,8 @@
     {
         throw;
     }
+    //Al finalizar pasar a la pagina Principal de Clientes
+    Response.Redirect("/Clientes");
 }
 
 @section scripts{
