@@ -125,7 +125,7 @@ namespace DemoRazorP.Pages.Clientes
                 throw;
             }
             //Redirigir a la pagina Index
-            Response.Redirect("/Clientes/Index/");
+            Response.Redirect("/Clientes");
 
         }
     }
