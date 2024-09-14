@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Diagnostics;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Security.AccessControl;
 
 namespace DemoRazorP.Pages.Ventas
 {
@@ -45,7 +46,7 @@ namespace DemoRazorP.Pages.Ventas
                 conexion.Open();
 
                 //Creamos un Objeto de la Clase SqlCommand con el dato cargado
-                SqlCommand comando = new SqlCommand("Select v.codVenta,[fechaVenta],c.NomCliente,[cantVenta],[totalVenta] From Clientes c Join Ventas v On c.codCliente = v.codCliente Where v.codVenta = @codVenta", conexion);
+                SqlCommand comando = new SqlCommand("Select v.codVenta,[fechaVenta],c.NomCliente,[cantVenta],[presVenta],[totalVenta] From Clientes c Join Ventas v On c.codCliente = v.codCliente Where v.codVenta = @codVenta", conexion);
 
                 //Pasar los Datos del Codigo de la venta seleccionada
                 comando.Parameters.AddWithValue("@codVenta", codVenta);
@@ -60,7 +61,8 @@ namespace DemoRazorP.Pages.Ventas
                     newVenta.fechaVenta = registro.GetDateTime(1).ToString("dd/MM/yyyy");
                     newVenta.nomCliente = registro.GetString(2);
                     newVenta.cantVenta = registro.GetInt32(3);
-                    newVenta.totalVenta = registro.GetSqlMoney(4);
+                    newVenta.presVenta = registro.GetSqlMoney(4);
+                    newVenta.totalVenta = registro.GetSqlMoney(5);
                 }
                 //Cerrar la Conexion
                 conexion.Close();
@@ -78,6 +80,7 @@ namespace DemoRazorP.Pages.Ventas
             newVenta.fechaVenta = Request.Form["FechaVenta"];
             newVenta.nomCliente = Request.Form["nomCliente"];
             newVenta.cantVenta = int.Parse(Request.Form["cantidad"]);
+            newVenta.presVenta = SqlMoney.Parse(Request.Form["presVenta"]);
             newVenta.totalVenta = SqlMoney.Parse(Request.Form["MontoTotal"]);
 
             if (newVenta.fechaVenta.Length == 0 || newVenta.nomCliente.Length == 0 || newVenta.cantVenta == 0 || newVenta.totalVenta == 0)
@@ -97,7 +100,7 @@ namespace DemoRazorP.Pages.Ventas
                 conexion.Open();
 
                 //Cramos el Query
-                string query = "Update Ventas Set fechaVenta = @fechaVenta, NomCliente = @NomCliente, cantVenta = @cantVenta, totalVenta = @totalVenta Where " + " codVenta = @codVenta";
+                string query = "Update Ventas Set fechaVenta = @fechaVenta, NomCliente = @NomCliente, cantVenta = @cantVenta, presVenta = @presVenta ,totalVenta = @totalVenta Where " + " codVenta = @codVenta";
 
                 //Creamos un objeto de la Clase SqlCommand
                 SqlCommand comando = new SqlCommand(query, conexion);
@@ -106,6 +109,7 @@ namespace DemoRazorP.Pages.Ventas
                 comando.Parameters.AddWithValue("@fechaVenta", DateTime.Parse(newVenta.fechaVenta));
                 comando.Parameters.AddWithValue("@NomCliente", newVenta.nomCliente);
                 comando.Parameters.AddWithValue("@cantventa", newVenta.cantVenta);
+                comando.Parameters.AddWithValue("@presVenta", newVenta.presVenta);
                 comando.Parameters.AddWithValue("@totalVenta", newVenta.totalVenta);
 
                 //Ejecutamos el comando anterior

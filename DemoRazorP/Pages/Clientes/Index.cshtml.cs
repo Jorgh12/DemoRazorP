@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 //Referencia al namepace para gestion de datos
 using System.Data.SqlClient;
 //Referencia al Modelo
-using DemoRazorP.Modelos;
+
 
 namespace DemoRazorP.Pages.Clientes
 {

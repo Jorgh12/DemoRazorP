@@ -10,6 +10,7 @@ namespace DemoRazorP.Modelos
         public int codCliente { get; set;}
         public string nomCliente { get; set;}
         public int cantVenta { get;  set;}
+        public SqlMoney presVenta { get; set; }
         public SqlMoney totalVenta { get; set; }
     }
 }

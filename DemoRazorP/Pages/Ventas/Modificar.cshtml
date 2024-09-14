@@ -36,9 +36,15 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Monto Total:</label>
+        <label class="col-sm-3 col-form-label">Precio Unit:</label>
         <div class="col-sm-6">
-            <input type="date" class="form-control" name="MontoTotal" value="@Model.newVenta.totalVenta" />
+            <input type="text" class="form-control" name="presVenta" value="@Model.newVenta.presVenta" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label"><b>Monto Total:</b></label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="MontoTotal" value="@Model.newVenta.totalVenta" />
         </div>
     </div>
     <!--Mostrar Mensaje que se Cambio Correctamente-->
