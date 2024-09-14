@@ -1,0 +1,40 @@
+﻿@page
+@model DemoRazorP.Pages.Ventas.IndexModel
+@{
+    ViewData["Title"] = "Listado de Ventas";
+}
+<br />
+<h2>Listado de Ventas</h2>
+<a class="btn btn-primary btn-sm" href="Ventas/Agregar">Nueva Venta</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Correlativo</th>
+            <th>Fecha</th>
+            <th>Nombre del Cliente</th>
+            <th>Cantidad vendida</th>
+            <th>Monto</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <!-- Recorremos la lista de objeto creada en el Modelo-->
+        @foreach (var item in Model.ListaVentas)
+        {
+            <tr>
+                <td>@item.codVenta</td>
+                <td>@item.fechaVenta</td>
+                <td>@item.codCliente</td>
+                <td>@item.cantVenta</td>
+                <td>@item.totalVenta</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="Ventas/Modificar?id=@item.codVenta">Modificar</a>
+                    <a class="btn btn-danger btn-sm" href="Ventas/Eliminar?id=@item.codVenta">Eliminar</a>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>

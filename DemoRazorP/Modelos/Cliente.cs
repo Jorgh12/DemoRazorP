@@ -2,7 +2,7 @@
 {
     public class Cliente
     {
-        //Propiedades para acceder a cada uno de las talbas
+        //Propiedades para acceder a cada una de las
         public int codCliente { get; set; }
         public String nomcliente { get; set; }
         public String Direccion { get; set; }
