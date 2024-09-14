@@ -1,0 +1,67 @@
+﻿@page
+@model DemoRazorP.Pages.Producto.ModificarpModel
+@{
+    ViewData["Title"] = "Actualizar Productos";
+}
+
+<br />
+<h2>Actualizar Productos</h2>
+
+<!--Para el Manejo de Errores-->
+@if (Model.mensajeError.Length > 0)
+{
+    <div class='alert alert-warning alert-dismissible fade show' role="alert">
+        <strong>@Model.mensajeError</strong>
+        <button type="button" class="btn-close" data-bs-dismiss='alert' aria-label='Close'></button>
+    </div>
+}
+<form method="post">
+    <input type="hidden" name="codProducto" value="@Model.newProducto.codProducto" />
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Nombre del Producto:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="nombre" value="@Model.newProducto.nomProducto" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Tipo de Producto:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="tipoProducto" value="@Model.newProducto.tipoProducto" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Existencia de Producto:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="extProducto" value="@Model.newProducto.extProducto" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Precio del Producto:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="preProducto" value="@Model.newProducto.preProducto" />
+        </div>
+    </div>
+    <!--Mostrar Mensaje que se Cambio Correctamente-->
+    @if (Model.mensajeExito.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class='alert alert-dismissible fade show' role='alert'>
+                    <strong>@Model.mensajeExito</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-secondary">Modificar</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/Producto" role="button">Cancelar</a>
+        </div>
+    </div>
+
+</form>
+

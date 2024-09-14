@@ -1,0 +1,59 @@
+﻿@page
+@using System.Data.SqlClient
+@model DemoRazorP.Pages.Producto.EliminarpModel
+@{
+
+    try
+    {
+        //Obtenemos el codigo del cliente desde la Url
+        string codProducto = Request.Query["id"];
+        if (!string.IsNullOrEmpty(codProducto))
+        {
+            Console.WriteLine($"El codigo del cliente es: {codProducto}");
+        }
+
+        //Definimos una variable y le asignamos la cadena de conexion
+        // Oficina-- DESKTOP-JHENRIQ
+        // Casa----- PCHENRIQUEZ\\SQLEXPRESS
+        //LAPTOP-7NQN9E7L\SQLEXPRESS
+        string cadena = "Data Source = LAPTOP-7NQN9E7L\\SQLEXPRESS; Initial Catalog=Base1; Integrated Security=true";
+
+        //Creamos un objeto de la clase SQLConnection indicando como parametro la cadena de conexion
+        SqlConnection conexion = new SqlConnection(cadena);
+
+        //Abrimos la conexion
+        conexion.Open();
+
+        //Creamos un objeto de la clase SqlCommand con el dato cargado en el control TexBox
+        SqlCommand comando = new SqlCommand("Delete From Producto Where codProducto = @codProducto", conexion);
+
+        //Pasar Datos del codigo de Cliente al parametro
+        comando.Parameters.AddWithValue("@codProducto", codProducto);
+
+        comando.ExecuteNonQuery();
+
+        <form>
+            <div class='alert alert-success alert-dismissible fade show' role="alert">
+                <strong>Se Borró El Producto Seleccionado Correctamente</strong>
+            </div>
+        </form>
+
+        //Cerramos la conexion
+        conexion.Close();
+    }
+    catch (Exception ex)
+    {
+        throw;
+    }
+    //Al finalizar pasar a la pagina Principal de Productos
+    Response.Redirect("/Producto");
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.alert-success').show();
+            setTimeout(function () { $('.alert').alert('close'); }, 3000);
+        });
+    </script>
+}
