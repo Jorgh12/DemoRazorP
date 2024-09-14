@@ -1,4 +1,67 @@
 ﻿@page
 @model DemoRazorP.Pages.Ventas.ModificarModel
 @{
+    ViewData["Title"] = "Modificar Venta";
 }
+
+<br />
+<h2>Modificar Venta</h2>
+
+<!--Para el Manejo de Errores-->
+@if (Model.mensajeError.Length > 0)
+{
+    <div class='alert alert-warning alert-dismissible fade show' role="alert">
+        <strong>@Model.mensajeError</strong>
+        <button type="button" class="btn-close" data-bs-dismiss ='alert' aria-label='Close'></button>
+    </div>
+}
+<form method="post">
+    <input type="hidden" name="codigo" value="@Model.newVenta.codVenta" />
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Fecha Venta:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="FechaVenta" value="@Model.newVenta.fechaVenta" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Cliente:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="nomCliente" value="@Model.newVenta.nomCliente" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Cantidad:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="cantidad" value="@Model.newVenta.cantVenta" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Monto Total:</label>
+        <div class="col-sm-6">
+            <input type="date" class="form-control" name="MontoTotal" value="@Model.newVenta.totalVenta" />
+        </div>
+    </div>
+    <!--Mostrar Mensaje que se Cambio Correctamente-->
+    @if (Model.mensajeExito.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class='alert alert-dismissible fade show' role='alert'>
+                    <strong>@Model.mensajeExito</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-secondary">Modificar</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/Ventas" role="button">Cancelar</a>
+        </div>
+    </div>
+
+</form>
+

@@ -47,7 +47,7 @@ namespace DemoRazorP.Pages.Producto
                     //Agregar Objeto a la lista 
                     listaProducto.Add(newProducto);
                 }
-                //Cerrar Conexión
+                //Cerrar Conexiï¿½n
                 conexion.Close();
             }
             catch (Exception ex)

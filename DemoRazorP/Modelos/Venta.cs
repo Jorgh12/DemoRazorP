@@ -1,4 +1,6 @@
-﻿namespace DemoRazorP.Modelos
+﻿using System.Data.SqlTypes;
+
+namespace DemoRazorP.Modelos
 {
     public class Venta
     {
@@ -6,7 +8,8 @@
         public int codVenta {  get; set; }
         public string fechaVenta { get; set;}
         public int codCliente { get; set;}
+        public string nomCliente { get; set;}
         public int cantVenta { get;  set;}
-        public double totalVenta { get; set; }
+        public SqlMoney totalVenta { get; set; }
     }
 }

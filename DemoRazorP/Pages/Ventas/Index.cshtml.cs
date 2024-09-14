@@ -29,7 +29,7 @@ namespace DemoRazorP.Pages.Ventas
                 //Abrir Conexion
                 conexion.Open();
                 //Crear Objeto de "SlqCommand"
-                SqlCommand commando = new SqlCommand("Select * From Ventas", conexion);
+                SqlCommand commando = new SqlCommand("Select v.codVenta,[fechaVenta],c.NomCliente,[cantVenta],[totalVenta] From Clientes c Join Ventas v On c.codCliente = v.codCliente", conexion);
                 //Crear Objeto  "SqlDataReader"
                 SqlDataReader lector = commando.ExecuteReader();
                 //Recorrer el DataReader
@@ -38,10 +38,10 @@ namespace DemoRazorP.Pages.Ventas
                     //Crear un objeto de tipo clase cliente
                     Venta newVenta = new Venta();
                     newVenta.codVenta = lector.GetInt32(0);
-                    newVenta.fechaVenta = lector.GetDateTime(6).ToString("dd/MM/yyyy");
-                    newVenta.codCliente = lector.GetInt32(5);
-                    newVenta.cantVenta = lector.GetInt32(2);
-                    newVenta.totalVenta = lector.GetDouble(4);
+                    newVenta.fechaVenta = lector.GetDateTime(1).ToString("dd/MM/yyyy");
+                    newVenta.nomCliente = lector.GetString(2).ToString();
+                    newVenta.cantVenta = lector.GetInt32(3);
+                    newVenta.totalVenta = lector.GetSqlMoney(4);
 
                     //Agregar Objeto a la lista 
                     ListaVentas.Add(newVenta);
